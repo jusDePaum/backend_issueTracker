@@ -1,17 +1,45 @@
 package geiffel.da4.issuetracker.user;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import geiffel.da4.issuetracker.commentaire.Commentaire;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+@Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
 
+    @Id
     private Long id;
     private String nom;
     private Fonction fonction;
+
+    @OneToMany
+    @JoinColumn(referencedColumnName = "id")
+    private List<Commentaire> commentairesEcrits;
 
     public User(Long id, String nom, Fonction fonction) {
         this.id = id;
         this.nom = nom;
         this.fonction = fonction;
+    }
+
+    public User() {
+
+    }
+
+    public List<Commentaire> getCommentairesEcrits() {
+        return commentairesEcrits;
+    }
+
+    public void setCommentairesEcrits(ArrayList<Commentaire> commentairesEcrits) {
+        this.commentairesEcrits = commentairesEcrits;
     }
 
     public Long getId() {
@@ -38,6 +66,7 @@ public class User {
         this.fonction = fonction;
     }
 
+
     @Override
     public boolean equals(Object obj) {
         if (getClass() != obj.getClass()){
@@ -45,7 +74,7 @@ public class User {
         }
         User comparing = (User) obj;
         return Objects.equals(this.id, comparing.getId()) &&
-            this.nom.equals(comparing.getNom()) &&
-            this.fonction == comparing.getFonction();
+                this.nom.equals(comparing.getNom()) &&
+                this.fonction == comparing.getFonction();
     }
 }

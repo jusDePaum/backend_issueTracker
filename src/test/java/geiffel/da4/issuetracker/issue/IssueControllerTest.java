@@ -19,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,11 +54,11 @@ public class IssueControllerTest {
     void setup() {
 
         issues = new ArrayList<>(){{
-            add(new Issue(1L, "blah1", "some content1", author));
-            add(new Issue(2L, "blah2", "some content2", author));
-            add(new Issue(3L, "blah3", "some content3", author));
-            add(new Issue(4L, "blah4", "some content4", author));
-            add(new Issue(5L, "blah5", "some content5", author));
+            add(new Issue(1L, "blah", "some content1", author, Timestamp.from(Instant.now()), null));
+            add(new Issue(2L, "bleuh", "some content2", author, Timestamp.from(Instant.now()), null));
+            add(new Issue(3L, "blih", "some content3", author, Timestamp.from(Instant.now()), null));
+            add(new Issue(4L, "bloh", "some content4", author, Timestamp.from(Instant.now()), null));
+            add(new Issue(5L, "bluh", "some content5", author, Timestamp.from(Instant.now()), null));
         }};
         Mockito.when(issueService.getAll()).thenReturn(issues);
         Mockito.when(issueService.getByCode(1L)).thenReturn(issues.get(0));
@@ -84,7 +86,7 @@ public class IssueControllerTest {
 
     @Test
     void whenCreatingIssue_shouldGetLinkToResource() throws Exception {
-        Issue issue = new Issue(6L, "issue", "it doesn't work", author);
+        Issue issue = new Issue(6L, "issue", "it doesn't work", author, Timestamp.from(Instant.now()), null);
         Mockito.when(issueService.create(Mockito.any(Issue.class))).thenReturn(issue);
 
         String toSend = mapper.writeValueAsString(issue);
