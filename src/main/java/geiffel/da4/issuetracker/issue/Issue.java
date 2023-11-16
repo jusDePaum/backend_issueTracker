@@ -43,8 +43,6 @@ public class Issue{
         this.commentaires = commentaires;
     }
 
-
-
     public Issue(Long code, String title, String content, User emitter) {
         this.title = title;
         this.content = content;
