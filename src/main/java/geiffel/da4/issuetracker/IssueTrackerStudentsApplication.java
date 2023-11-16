@@ -27,12 +27,12 @@ public class IssueTrackerStudentsApplication {
     private CommentaireRepository commentaireRepository;
 
     //Définition constantes que Sonarcloud m'a demandé parce qu'il père les couilles
-    private final static User userMachin = new User(1L, "Machin", Fonction.USER);
-    private final static User userChose = new User(2L, "Chose", Fonction.USER);
+    private static User userMachin = new User(1L, "Machin", Fonction.USER);
+    private static User userChose = new User(2L, "Chose", Fonction.USER);
 
-    private final static Issue issue1 = new Issue(1L, "1st comm", "C'est ma 1re issue", userMachin);
-    private final static Issue issue2 = new Issue(2L, "2nd comm", "C'est ma 2nde issue", userMachin);
-    private final static Issue issue3 = new Issue(3L, "3e comm", "C'est ma 3re issue", new User(3L, "Truc", Fonction.DEVELOPPER));
+    private static Issue issue1 = new Issue(1L, "1st comm", "C'est ma 1re issue", userMachin);
+    private static Issue issue2 = new Issue(2L, "2nd comm", "C'est ma 2nde issue", userMachin);
+    private static Issue issue3 = new Issue(3L, "3e comm", "C'est ma 3re issue", new User(3L, "Truc", Fonction.DEVELOPPER));
 
     public static void main(String[] args) {
         SpringApplication.run(IssueTrackerStudentsApplication.class, args);
