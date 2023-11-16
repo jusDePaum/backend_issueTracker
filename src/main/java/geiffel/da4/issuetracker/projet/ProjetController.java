@@ -31,8 +31,8 @@ public class ProjetController {
 
     @PostMapping
     public ResponseEntity createProjet(@RequestBody Projet projet){
-        Projet created_projet = projetService.create(projet);
-        return ResponseEntity.status(201).header("Location", "/projets/"+created_projet.getId().toString()).build();
+        Projet createdProjet = projetService.create(projet);
+        return ResponseEntity.status(201).header("Location", "/projets/"+createdProjet.getId().toString()).build();
     }
 
     @PutMapping("/{id}")

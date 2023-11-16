@@ -32,9 +32,6 @@ public class Issue{
     @JoinColumn(name = "idCommentaire")
     private List<Commentaire> commentaires;
 
-    public Issue(long l, String theIssue, String theContent, User user, Timestamp from, Object o) {
-    }
-
     public List<Commentaire> getCommentaires() {
         return commentaires;
     }

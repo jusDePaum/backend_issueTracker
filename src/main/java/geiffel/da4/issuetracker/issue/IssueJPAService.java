@@ -11,12 +11,12 @@ import java.util.Optional;
 
 @Service
 @Qualifier("issueJPA")
-public class issueJPAService implements IssueService {
+public class IssueJPAService implements IssueService {
 
     private IssueRepository issueRepository;
 
     @Autowired
-    public issueJPAService(IssueRepository issueRepository) {
+    public IssueJPAService(IssueRepository issueRepository) {
         this.issueRepository = issueRepository;
     }
 
@@ -48,14 +48,9 @@ public class issueJPAService implements IssueService {
 
     @Override
     public Issue update(Long id, Issue updatedIssue) throws ResourceNotFoundException {
-        /*if(!issueRepository.existsById(id)){
-            throw new ResourceNotFoundException("Issue", id);
-        }
-        updatedIssue.setCode(id);
-        issueRepository.save(updatedIssue);*/
-        Optional<Issue> IssueAModif = issueRepository.findById(id);
-        if(IssueAModif.isPresent()){
-            Issue issue = IssueAModif.get();
+        Optional<Issue> issueAModif = issueRepository.findById(id);
+        if(issueAModif.isPresent()){
+            Issue issue = issueAModif.get();
             issue.setContent(updatedIssue.getContent());
             issue.setEmitter(updatedIssue.getEmitter());
             issue.setTitle(updatedIssue.getTitle());
