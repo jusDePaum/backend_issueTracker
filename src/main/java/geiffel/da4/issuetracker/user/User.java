@@ -38,7 +38,7 @@ public class User {
         return commentairesEcrits;
     }
 
-    public void setCommentairesEcrits(ArrayList<Commentaire> commentairesEcrits) {
+    public void setCommentairesEcrits(List<Commentaire> commentairesEcrits) {
         this.commentairesEcrits = commentairesEcrits;
     }
 

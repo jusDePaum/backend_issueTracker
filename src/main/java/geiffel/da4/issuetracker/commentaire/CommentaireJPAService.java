@@ -11,8 +11,9 @@ import java.util.Optional;
 
 @Service
 @Qualifier("commentaireJPA")
-public class commentaireJPAService implements CommentaireService {
+public class CommentaireJPAService implements CommentaireService {
 
+    private String onFaitPlaisirASonarCloud = "Commentaire";
     @Autowired
     private CommentaireRepository commentaireRepository;
 
@@ -23,11 +24,11 @@ public class commentaireJPAService implements CommentaireService {
 
     @Override
     public Commentaire getById(Long id) {
-        Optional<Commentaire> Commentaire = commentaireRepository.findById(id);
-        if (Commentaire.isPresent()) {
-            return Commentaire.get();
+        Optional<Commentaire> commentaire = commentaireRepository.findById(id);
+        if (commentaire.isPresent()) {
+            return commentaire.get();
         } else {
-            throw new ResourceNotFoundException("Commentaire", id);
+            throw new ResourceNotFoundException(onFaitPlaisirASonarCloud, id);
         }
     }
 
@@ -35,7 +36,7 @@ public class commentaireJPAService implements CommentaireService {
     @Override
     public Commentaire create(Commentaire newCommentaire) throws ResourceAlreadyExistsException {
         if (commentaireRepository.existsById(newCommentaire.getId())) {
-            throw new ResourceAlreadyExistsException("Commentaire", newCommentaire.getId());
+            throw new ResourceAlreadyExistsException(onFaitPlaisirASonarCloud, newCommentaire.getId());
         }
         return commentaireRepository.save(newCommentaire);
     }
@@ -43,7 +44,7 @@ public class commentaireJPAService implements CommentaireService {
     @Override
     public void update(Long id, Commentaire updatedCommentaire) throws ResourceNotFoundException {
         if (!commentaireRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Commentaire", id);
+            throw new ResourceNotFoundException(onFaitPlaisirASonarCloud, id);
         }
         updatedCommentaire.setId(id);
         commentaireRepository.save(updatedCommentaire);

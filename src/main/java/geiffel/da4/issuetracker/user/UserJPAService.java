@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @Qualifier("userJPA")
-public class userJPAService implements UserService{
+public class UserJPAService implements UserService{
 
     @Autowired
     private UserRepository userRepository;
