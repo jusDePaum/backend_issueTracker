@@ -1,6 +1,5 @@
 package geiffel.da4.issuetracker.commentaire;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface CommentaireService {
